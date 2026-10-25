@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="{{ 'hi' if lang == 'hi' else 'mr' if lang == 'mr' else 'en' }}">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% if lang == 'hi' %}किसान समुदाय | AgriSage{% elif lang == 'mr' %}शेतकरी समुदाय | AgriSage{% else %}Farmer Community | AgriSage{% endif %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='language.css') }}">
+</head>
+<body class="community-page">
+<header class="community-topbar">
+<a class="community-home" href="/?lang={{ lang }}"><span class="community-home-mark" aria-hidden="true">🌿</span><span>Agri<span class="brand-light">Sage</span></span></a>
+<nav><a href="/?lang={{ lang }}">{% if lang == 'hi' %}होम{% elif lang == 'mr' %}मुख्यपृष्ठ{% else %}Home{% endif %}</a><a href="/library?lang={{ lang }}">{% if lang == 'hi' %}फसल गाइड{% elif lang == 'mr' %}पीक मार्गदर्शिका{% else %}Crop Health Guide{% endif %}</a>
+<div class="language-select-shell community-language-shell" id="language-select-shell"><button class="language-picker-button" id="language-menu-button" type="button" aria-label="{% if lang == 'hi' %}भाषा चुनें{% elif lang == 'mr' %}भाषा निवडा{% else %}Choose language{% endif %}" aria-haspopup="listbox" aria-expanded="false" aria-controls="language-menu"><span id="language-picker-label">{{ {'en':'English','hi':'हिन्दी','mr':'मराठी'}[lang] }}</span></button><div class="language-menu" id="language-menu" role="listbox" aria-labelledby="language-menu-button" hidden>{% for key, label in [('en','English'),('hi','हिन्दी'),('mr','मराठी')] %}<button type="button" class="language-menu-option{% if lang == key %} is-selected{% endif %}" role="option" data-value="{{ key }}" aria-selected="{{ 'true' if lang == key else 'false' }}">{{ label }}</button>{% endfor %}</div></div></nav>
+</header>
+<main class="community-page-main">
+<section class="community-hero"><div class="community-hero-copy">
+<span class="community-under-development">{% if lang == 'hi' %}विकास कार्य जारी है{% elif lang == 'mr' %}विकास सुरू आहे{% else %}UNDER DEVELOPMENT{% endif %}</span>
+<h1>{% if lang == 'hi' %}किसान समुदाय{% elif lang == 'mr' %}शेतकरी समुदाय{% else %}The Farmer Community{% endif %}</h1>
+</div><div class="community-hero-art" aria-hidden="true">🌱</div></section>
+<div class="community-layout">
+<section class="community-feed-column">
+<div class="community-feed-toolbar"><h2>{% if lang == 'hi' %}हाल की चर्चाएँ{% elif lang == 'mr' %}अलीकडील चर्चा{% else %}Recent discussions{% endif %}</h2><span class="community-preview-badge">{% if lang == 'hi' %}डेमो पूर्वावलोकन{% elif lang == 'mr' %}डेमो पूर्वावलोकन{% else %}PREVIEW FEED{% endif %}</span></div>
+<div class="community-search"><span aria-hidden="true">⌕</span><span>{% if lang == 'hi' %}फसल, समस्या या सवाल खोजें{% elif lang == 'mr' %}पीक, समस्या किंवा प्रश्न शोधा{% else %}Search crops, problems, or questions{% endif %}</span></div>
+<article class="community-demo-post">
+<div class="community-post-top"><span class="community-avatar avatar-green">RK</span><div><strong>Ramesh K.</strong><small>{% if lang == 'hi' %}टमाटर किसान · 2 घंटे पहले{% elif lang == 'mr' %}टोमॅटो शेतकरी · २ तासांपूर्वी{% else %}Tomato farmer · 2 hours ago{% endif %}</small></div><span class="community-crop-tag">Tomato</span></div>
+<p>{% if lang == 'hi' %}मेरे टमाटर की पत्तियों पर धब्बे दिख रहे हैं। क्या किसी को इसका कारण पता है?{% elif lang == 'mr' %}माझ्या टोमॅटोच्या पानांवर डाग दिसत आहेत. याचे कारण कोणाला माहीत आहे का?{% else %}Spots are appearing on my tomato leaves. Has anyone seen this before?{% endif %}</p>
+<img class="community-post-photo" src="{{ url_for('static', filename='disease_images/tomato_leaf_mold.jpg') }}" alt="{% if lang == 'hi' %}टमाटर की पत्तियों पर धब्बों का उदाहरण फोटो{% elif lang == 'mr' %}टोमॅटोच्या पानांवरील डागांचा नमुना फोटो{% else %}Example photo of tomato leaf symptoms{% endif %}">
+<div class="community-post-meta"><span>♡ 12 {% if lang == 'hi' %}पसंद{% elif lang == 'mr' %}आवडी{% else %}likes{% endif %}</span><span>◯ 4 {% if lang == 'hi' %}जवाब{% elif lang == 'mr' %}उत्तरे{% else %}replies{% endif %}</span></div>
+</article>
+<article class="community-demo-post">
+<div class="community-post-top"><span class="community-avatar avatar-gold">SP</span><div><strong>Sunita P.</strong><small>{% if lang == 'hi' %}कपास किसान · कल{% elif lang == 'mr' %}कापूस शेतकरी · काल{% else %}Cotton farmer · Yesterday{% endif %}</small></div><span class="community-crop-tag">Cotton</span></div>
+<p>{% if lang == 'hi' %}कपास के पौधों की पत्तियाँ मुड़ रही हैं। मुझे किन बातों की जाँच करनी चाहिए?{% elif lang == 'mr' %}कापसाच्या झाडांची पाने वाकडी होत आहेत. मी काय तपासावे?{% else %}My cotton plant leaves are curling. What should I check first?{% endif %}</p>
+<img class="community-post-photo" src="{{ url_for('static', filename='disease_images/plantvillage_cotton_bacterial_blight.jpg') }}" alt="{% if lang == 'hi' %}कपास की पत्तियों का उदाहरण फोटो{% elif lang == 'mr' %}कापसाच्या पानांचा नमुना फोटो{% else %}Example photo of cotton leaves{% endif %}">
+<div class="community-post-meta"><span>♡ 8 {% if lang == 'hi' %}पसंद{% elif lang == 'mr' %}आवडी{% else %}likes{% endif %}</span><span>◯ 3 {% if lang == 'hi' %}जवाब{% elif lang == 'mr' %}उत्तरे{% else %}replies{% endif %}</span></div>
+</article>
+<div class="community-compose-preview"><span class="compose-plus" aria-hidden="true">＋</span><div><strong>{% if lang == 'hi' %}अपना सवाल साझा करें{% elif lang == 'mr' %}तुमचा प्रश्न शेअर करा{% else %}Share your own question{% endif %}</strong></div><button type="button" disabled>{% if lang == 'hi' %}जल्द{% elif lang == 'mr' %}लवकरच{% else %}Coming soon{% endif %}</button></div>
+</section>
+<aside class="community-sidebar">
+<section class="community-side-card"><h3>{% if lang == 'hi' %}समुदाय में शामिल हों{% elif lang == 'mr' %}समुदायात सहभागी व्हा{% else %}Be part of the community{% endif %}</h3><p>{% if lang == 'hi' %}अपनी फसल की समस्याओं पर चर्चा करें और स्थानीय अनुभव साझा करें।{% elif lang == 'mr' %}पिकांच्या समस्यांवर चर्चा करा आणि स्थानिक अनुभव शेअर करा.{% else %}Discuss crop problems and share local growing experience with other farmers.{% endif %}</p></section>
+<section class="community-side-card"><h3>{% if lang == 'hi' %}लोकप्रिय फसलें{% elif lang == 'mr' %}लोकप्रिय पिके{% else %}Popular crops{% endif %}</h3><div class="community-topic-list"><div class="community-topic"><span>🍅 Tomato</span><small>12</small></div><div class="community-topic"><span>☁️ Cotton</span><small>8</small></div><div class="community-topic"><span>🌽 Corn</span><small>6</small></div><div class="community-topic"><span>🍅 Tomato</span><small>5</small></div></div></section>
+</aside>
+</div>
+</main>
+<script>
+const languageShell=document.getElementById('language-select-shell'),languageButton=document.getElementById('language-menu-button'),languageMenu=document.getElementById('language-menu');
+function closeLanguageMenu(){languageMenu.hidden=true;languageButton.setAttribute('aria-expanded','false');}
+function openLanguageMenu(){languageMenu.hidden=false;languageButton.setAttribute('aria-expanded','true');languageMenu.querySelector('[aria-selected="true"]')?.scrollIntoView({block:'nearest'});}
+languageButton.addEventListener('click',()=>languageMenu.hidden?openLanguageMenu():closeLanguageMenu());
+languageButton.addEventListener('keydown',event=>{if(['ArrowDown','Enter',' '].includes(event.key)){event.preventDefault();openLanguageMenu();languageMenu.querySelector('[aria-selected="true"]')?.focus();}});
+languageMenu.addEventListener('click',event=>{const option=event.target.closest('[data-value]');if(option)location.href='/community?lang='+encodeURIComponent(option.dataset.value);});
+languageMenu.addEventListener('keydown',event=>{const items=[...languageMenu.querySelectorAll('[role="option"]')],index=items.indexOf(document.activeElement);if(event.key==='Escape'){event.preventDefault();closeLanguageMenu();languageButton.focus();}else if(event.key==='ArrowDown'||event.key==='ArrowUp'){event.preventDefault();items[Math.max(0,Math.min(items.length-1,index+(event.key==='ArrowDown'?1:-1)))]?.focus();}else if(event.key==='Home'||event.key==='End'){event.preventDefault();items[event.key==='Home'?0:items.length-1]?.focus();}else if(event.key==='Enter'||event.key===' '){event.preventDefault();document.activeElement?.click();}});
+document.addEventListener('click',event=>{if(!languageShell.contains(event.target))closeLanguageMenu();});
+</script>
+</body>
+</html>
